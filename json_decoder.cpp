@@ -1,6 +1,6 @@
-#include "json_decoder.h"
+#include "microjson.h"
 
-std::map<std::string, std::string> JsonDecoder::Decode(const std::string& json) {
+std::map<std::string, std::string> MicroJson::Decode(const std::string& json) {
     std::map<std::string, std::string> result;
 
     size_t pos = 0;
