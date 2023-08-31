@@ -18,7 +18,7 @@ int main() {
         "as": "AS812 Rogers Communications Canada Inc.",
         "query": "8.8.8.8"
     })";
-    std::map<std::string, std::string> decodedData = MicroJson::Decode(jsonResponse);
+    std::map<std::string, std::string> decodedData = Microjson::Decode(jsonResponse);
     std::cout << "Country Code: " << decodedData["countryCode"] << std::endl;
     std::cout << "Country: " << decodedData["country"] << std::endl;
     std::cout << "Region: " << decodedData["region"] << std::endl;
