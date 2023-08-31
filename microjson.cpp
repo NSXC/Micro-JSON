@@ -1,8 +1,7 @@
 #include "microjson.h"
 
-std::map<std::string, std::string> MicroJson::Decode(const std::string& json) {
+std::map<std::string, std::string> Microjson::Decode(const std::string& json) {
     std::map<std::string, std::string> result;
-
     size_t pos = 0;
     while (pos < json.size()) {
         size_t keyStart = json.find('"', pos);
@@ -23,8 +22,10 @@ std::map<std::string, std::string> MicroJson::Decode(const std::string& json) {
             break;
         }
         std::string value = json.substr(valueStart + 1, valueEnd - valueStart - 1);
+        value = value.substr(value.find_first_not_of(" \t\n\r\f\v"),
+            value.find_last_not_of(" \t\n\r\f\v") + 1);
         if (value.front() == '"' && value.back() == '"') {
-            value = value.substr(1, value.size() - 2);
+            value = value.substr(1, value.length() - 2);
         }
 
         result[key] = value;
@@ -33,3 +34,4 @@ std::map<std::string, std::string> MicroJson::Decode(const std::string& json) {
 
     return result;
 }
+
